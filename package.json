@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "make test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10",
+    "@types/node": "^20",
+    "@types/sinon": "^17",
+    "@typescript-eslint/eslint-plugin": "^6",
+    "@typescript-eslint/parser": "^6",
+    "c8": "^8",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9",
+    "eslint-plugin-import": "^2",
+    "mocha": "^10",
+    "prettier": "^3",
+    "sinon": "^17",
+    "ts-mocha": "^10",
+    "typescript": "^5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "root": true
+  }
+}
