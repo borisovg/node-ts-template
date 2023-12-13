@@ -16,9 +16,14 @@ node_modules: package-lock.json
 	test -d $@ && touch $@ || true
 
 .PHONY: test
+ifdef FILE
+test: dist
+	$(BIN)/c8 --reporter=none $(BIN)/ts-mocha -b $(FILE)
+else
 test: dist
 	$(BIN)/c8 --reporter=none $(BIN)/ts-mocha -b 'src/**/*.test.ts' \
 		&& $(BIN)/c8 report --all --clean -n src -x 'src/**/*.test.ts' -x 'src/types.*' --reporter=text
+endif
 
 package-lock.json:
 	npm install
