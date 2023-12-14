@@ -7,12 +7,12 @@ all: dist
 clean:
 	rm -rf coverage dist node_modules package-lock.json
 
-dist: node_modules $(TS_FILES) tsconfig.json
-	rm -rf dist
-	$(BIN)/tsc -p tsconfig-build.json || rm -rf dist
+dist: node_modules $(TS_FILES) tsconfig.json Makefile
+	rm -rf $@
+	$(BIN)/tsc -p tsconfig-build.json
 
 node_modules: package-lock.json
-	npm install || (rm -rf node_modules; exit 1)
+	npm install || (rm -rf $@; exit 1)
 	test -d $@ && touch $@ || true
 
 .PHONY: test
