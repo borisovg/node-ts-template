@@ -4,6 +4,12 @@ TS_FILES := $(shell find src/ -name '*.ts')
 
 all: dist
 
+## help:		show this help
+.PHONY: help
+help:
+	@sed -n 's/^##//p' Makefile | sort
+
+## clean: 	delete generated files
 .PHONY: clean
 clean:
 	rm -rf coverage dist node_modules package-lock.json
@@ -16,6 +22,7 @@ node_modules: package.json package-lock.json
 	npm install || (rm -rf $@; exit 1)
 	test -d $@ && touch $@ || true
 
+## test:		run unit tests (set FILE env variable to run test for that file only)
 .PHONY: test
 ifdef FILE
 test: dist
