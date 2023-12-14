@@ -33,5 +33,9 @@
       "@typescript-eslint"
     ],
     "root": true
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2
   }
 }
