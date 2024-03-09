@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "lint": "make lint",
+    "prepublishOnly": "make",
     "test": "make test"
   },
   "dependencies": {
