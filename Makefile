@@ -30,13 +30,18 @@ node_modules: package.json $(NPM_LOCK)
 	$(NPM) install || (rm -rf $@; exit 1)
 	test -d $@ && touch $@ || true
 
+## start-dev:	start application in development mode
+.PHONY: start-dev
+start-dev: node_modules
+	while true; do LOG_LEVEL=debug $(NPM_BIN)/nodemon -w ./src ./src/index.ts; sleep 1; done
+
 ## test:		run unit tests (set FILE env variable to run test for that file only)
 .PHONY: test
 ifdef FILE
-test: dist
+test:
 	$(NPM_BIN)/c8 --reporter=none $(NPM_BIN)/ts-mocha $(MOCHA_OPTS) $(FILE)
 else
-test: dist
+test:
 	$(NPM_BIN)/c8 --reporter=none $(NPM_BIN)/ts-mocha $(MOCHA_OPTS) 'src/**/*.spec.ts' \
 		&& $(NPM_BIN)/c8 report --all --clean -n src -x 'src/**/*.spec.ts' -x 'src/types.*' --reporter=text
 endif

@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "make lint",
     "prepublishOnly": "make",
+    "start:dev": "make start-dev",
     "test": "make test"
   },
   "dependencies": {
@@ -21,9 +22,11 @@
     "eslint-config-prettier": "^9",
     "eslint-plugin-import": "^2",
     "mocha": "^10",
+    "nodemon": "^3",
     "prettier": "^3",
     "sinon": "^17",
     "ts-mocha": "^10",
+    "ts-node": "^10",
     "typescript": "^5"
   },
   "eslintConfig": {
