@@ -16,6 +16,11 @@ help:
 clean:
 	rm -rf coverage dist node_modules $(NPM_LOCK)
 
+## ci: 		run tests and remove dev dependencies
+.PHONY: ci
+ci: test dist
+	$(NPM) install --omit=dev
+
 dist: node_modules $(TS_FILES) tsconfig.json Makefile
 	rm -rf $@
 	$(NPM_BIN)/tsc -p tsconfig-build.json
@@ -38,10 +43,10 @@ start-dev: node_modules
 ## test:		run unit tests (set FILE env variable to run test for that file only)
 .PHONY: test
 ifdef FILE
-test:
+test: node_modules
 	$(NPM_BIN)/c8 --reporter=none $(NPM_BIN)/ts-mocha $(MOCHA_OPTS) $(FILE)
 else
-test:
+test: node_modules
 	$(NPM_BIN)/c8 --reporter=none $(NPM_BIN)/ts-mocha $(MOCHA_OPTS) 'src/**/*.spec.ts' \
 		&& $(NPM_BIN)/c8 report --all --clean -n src -x 'src/**/*.spec.ts' -x 'src/types.*' --reporter=text
 endif
