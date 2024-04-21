@@ -1,5 +1,7 @@
 {
   "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "make lint",
     "prepublishOnly": "make",
