@@ -18,7 +18,8 @@ clean:
 ## ci: 		run tests and remove dev dependencies
 .PHONY: ci
 ci: test dist
-	$(NPM) install --omit=dev
+	$(NPM) prune --prod
+	rm $(NPM_LOCK)
 
 dist: node_modules $(TS_FILES) tsconfig.json Makefile
 	rm -rf $@
