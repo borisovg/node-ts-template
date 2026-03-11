@@ -10,25 +10,25 @@
     "test": "make test"
   },
   "dependencies": {
-    "tslib": "^2"
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9",
-    "@types/mocha": "^10",
-    "@types/node": "^22",
-    "@types/sinon": "^17",
-    "c8": "^10",
-    "eslint": "^9",
-    "eslint-config-prettier": "^10",
-    "eslint-plugin-prettier": "^5",
-    "mocha": "^11",
-    "nodemon": "^3",
-    "prettier": "^3",
-    "sinon": "^21",
-    "ts-mocha": "^11",
-    "ts-node": "^10",
-    "typescript": "^5",
-    "typescript-eslint": "^8"
+    "@eslint/js": "^10.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.3.5",
+    "@types/sinon": "^21.0.0",
+    "c8": "^11.0.0",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "mocha": "^11.7.5",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
+    "sinon": "^21.0.2",
+    "ts-mocha": "^11.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
   },
   "prettier": {
     "singleQuote": true,
