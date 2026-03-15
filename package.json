@@ -16,9 +16,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2",
     "@types/node": "^25",
-    "@types/sinon": "^21",
     "@vitest/coverage-v8": "^4",
-    "sinon": "^21",
     "tsx": "^4",
     "typescript": "^5",
     "vitest": "^4"
