@@ -18,5 +18,11 @@
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "Dockerfile": ".dockerignore, compose.yaml",
+    "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml",
+    "tsconfig.json": "tsconfig*.json"
   }
 }
