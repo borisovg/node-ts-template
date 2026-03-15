@@ -1,7 +1,7 @@
-MOCHA_OPTS := --bail --type-check
 NPM := pnpm
 NPM_LOCK := pnpm-lock.yaml
 TS_FILES := $(shell find src/ -name '*.ts')
+NPM_BIN := ./node_modules/.bin
 
 all: dist
 
@@ -23,13 +23,12 @@ ci: test dist
 
 dist: node_modules $(TS_FILES) tsconfig.json Makefile
 	rm -rf $@
-	pnpm tsc -p tsconfig-build.json
+	$(NPM_BIN)/tsc -p tsconfig-build.json
 
 ## lint:		run linter checks
 .PHONY: lint
 lint: node_modules
-	pnpm prettier --check 'src/**/*.{js,ts,json,md,yml}'
-	pnpm eslint src/ --max-warnings 0
+	$(NPM_BIN)/biome check --write --error-on-warnings
 
 node_modules: package.json $(NPM_LOCK)
 	$(NPM) install || (rm -rf $@; exit 1)
@@ -38,18 +37,22 @@ node_modules: package.json $(NPM_LOCK)
 ## start-dev:	start application in development mode
 .PHONY: start-dev
 start-dev: node_modules
-	while true; do LOG_LEVEL=debug pnpm nodemon -w ./src ./src/index.ts; sleep 1; done
+	while true; do LOG_LEVEL=debug $(NPM_BIN)/tsx watch ./src/index.ts; sleep 1; done
 
 ## test:		run unit tests (set FILE env variable to run test for that file only)
 .PHONY: test
 ifdef FILE
 test: node_modules
-	pnpm c8 --reporter=none ts-mocha $(MOCHA_OPTS) $(FILE)
+	$(NPM_BIN)/vitest $(FILE)
 else
 test: node_modules
-	pnpm c8 --reporter=none ts-mocha $(MOCHA_OPTS) 'src/**/*.spec.ts' \
-		&& pnpm c8 report --all --clean -n src -x 'src/**/*.spec.ts' -x 'src/types.*' --reporter=text
+	$(NPM_BIN)/vitest --coverage --run
 endif
+
+## test-watch:	run unit tests in watch mode
+.PHONY: test-watch
+test-watch: node_modules
+	$(NPM_BIN)/vitest
 
 $(NPM_LOCK):
 	$(NPM) install && touch $@

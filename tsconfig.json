@@ -1,5 +1,6 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
