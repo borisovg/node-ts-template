@@ -16,7 +16,21 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "style": {
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "node:assert": "Use vitest instead"
+            }
+          }
+        }
+      },
+      "suspicious": {
+        "noConsole": "error",
+        "noSkippedTests": "error"
+      }
     }
   },
   "javascript": {
