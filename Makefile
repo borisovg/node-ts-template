@@ -1,5 +1,6 @@
 NPM := pnpm
 NPM_LOCK := pnpm-lock.yaml
+TS_CONFIGS := tsconfig.json tsconfig-build.json
 TS_FILES := $(shell find src/ -name '*.ts')
 NPM_BIN := ./node_modules/.bin
 
@@ -21,7 +22,7 @@ ci: test dist
 	$(NPM) prune --prod
 	rm $(NPM_LOCK)
 
-dist: node_modules $(TS_FILES) tsconfig.json Makefile
+dist: node_modules $(TS_FILES) $(TS_CONFIGS) Makefile
 	rm -rf $@
 	$(NPM_BIN)/tsc -p tsconfig-build.json
 
