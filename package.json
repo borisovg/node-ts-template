@@ -18,7 +18,7 @@
     "@types/node": "^25",
     "@vitest/coverage-v8": "^4",
     "tsx": "^4",
-    "typescript": "^5",
+    "typescript": "^6",
     "vitest": "^4"
   }
 }
